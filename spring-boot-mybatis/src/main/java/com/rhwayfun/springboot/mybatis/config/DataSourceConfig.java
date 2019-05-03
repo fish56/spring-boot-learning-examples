@@ -11,11 +11,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 
 @Configuration
+@Component
 @ConfigurationProperties(prefix = "mybatis.datasource")
+// 关联dao层
 @MapperScan(basePackages = { DataSourceConstants.MAPPER_PACKAGE }, sqlSessionFactoryRef = "mybatisSqlSessionFactory")
 public class DataSourceConfig {
 
@@ -25,27 +28,31 @@ public class DataSourceConfig {
 
     private String password;
 
+    // 创建数据源
     @Bean(name = "mybatisDataSource")
     public DataSource mybatisDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
         return dataSource;
     }
 
+    // 事务管理
     @Bean(name = "mybatisTransactionManager")
     public DataSourceTransactionManager mybatisTransactionManager() {
         return new DataSourceTransactionManager(mybatisDataSource());
     }
 
+    // session 工厂
     @Bean(name = "mybatisSqlSessionFactory")
     public SqlSessionFactory mybatisSqlSessionFactory(@Qualifier("mybatisDataSource") DataSource mybatisDataSource)
             throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(mybatisDataSource);
         sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver()
+                // 告知MyBatis Mapper文件的位置
                 .getResources(DataSourceConstants.MAPPER_LOCATION));
         return sessionFactory.getObject();
     }

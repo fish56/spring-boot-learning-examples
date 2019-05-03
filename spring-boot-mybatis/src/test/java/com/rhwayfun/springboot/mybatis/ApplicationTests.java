@@ -41,15 +41,17 @@ public class ApplicationTests {
 		userMapper.deleteByExample(new UserExample());
 	}
 
+	// 创建一个用户
+	@Test
 	public void testUp() {
 		User user = new User();
-		user.setUserId(1L);
 		user.setUserName("springboot");
 		user.setAge(1);
 		user.setBirth(new Date());
 		assertTrue(userMapper.insertSelective(user) > 0);
 	}
 
+	@Test
 	public void tearDown() {
 		UserExample example = new UserExample();
 		example.createCriteria().andUserIdEqualTo(1L);
