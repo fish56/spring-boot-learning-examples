@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class RandomProperty {
+// 读取配置文件中的随机数，并赋值给对应的属性
 
     @Value("${my.secret}")
     private String randomValue;

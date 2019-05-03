@@ -24,6 +24,7 @@ public class RandomPropertyTest {
 
     @Test
     public void getRandomValue() throws Exception {
+        System.out.println(randomProperty.getRandomValue());
         assertNotNull(randomProperty.getRandomValue());
     }
 

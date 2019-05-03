@@ -117,17 +117,27 @@
 
     <dependencies>
         <dependency>
+            <!--web开发核心依赖，包含Spring全家桶以及Tomcat容器-->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <!-- 测试相关的启动类，以及集成了junit -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
         <dependency>
+            <!-- 可以让我们在调试开发时更加的快速 -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
+        </dependency>
+
+        <dependency>
+            <!-- Java对象和JSON格式的互相转化 -->
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.56</version>
         </dependency>
     </dependencies>
 
