@@ -2,6 +2,7 @@ package com.rhwayfun.springboot.configuration.property;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * 带前缀属性配置
@@ -30,7 +31,10 @@ import org.springframework.context.annotation.Configuration;
  * @author happyxiaofan
  * @since 0.0.1
  */
+
 @Configuration
+@Component
+// 将application.yml配置中，my.config.*的值赋值给对应名称的属性
 @ConfigurationProperties(prefix = "my.config")
 public class SimpleProperty {
 

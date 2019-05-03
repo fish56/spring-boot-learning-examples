@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles("dev")
+@ActiveProfiles("dev") // 使用application-dev来激活文件
 public class ProfilePropertyTest {
 
     @Autowired
